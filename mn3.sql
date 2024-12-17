@@ -112,13 +112,13 @@ JOIN Students s ON a.id = s.address_id
 GROUP BY a.address;
 
 SELECT c.name AS CourseName, ROUND(AVG(p.point), 2) AS AveragePoint
-FROM Courses c
-JOIN Points p ON c.id = p.course_id
+FROM Course c
+JOIN Point p ON c.id = p.course_id
 GROUP BY c.name;
 
 SELECT c.name AS CourseName, ROUND(AVG(p.point), 2) AS MaxAveragePoint
-FROM Courses c
-JOIN Points p ON c.id = p.course_id
+FROM Course c
+JOIN Point p ON c.id = p.course_id
 GROUP BY c.name
 ORDER BY MaxAveragePoint DESC
 LIMIT 1;
