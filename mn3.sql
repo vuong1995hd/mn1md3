@@ -120,5 +120,11 @@ SELECT c.name AS CourseName, ROUND(AVG(p.point), 2) AS MaxAveragePoint
 FROM Course c
 JOIN Point p ON c.id = p.course_id
 GROUP BY c.name
-ORDER BY MaxAveragePoint DESC
-LIMIT 1;
+HAVING ROUND(AVG(p.point), 2) = (
+    SELECT ROUND(MAX(avg_point), 2)
+    FROM (
+        SELECT AVG(p.point) AS avg_point
+        FROM Point p
+        GROUP BY p.course_id
+    ) AS subquery
+);
